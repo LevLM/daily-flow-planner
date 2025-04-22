@@ -63,11 +63,6 @@ public class TaskPlanner {
 		}
 	}
 
-//	public void sortTasks() {
-//	    tasks.sort(Comparator.comparing(Task::getDueDate)
-//	              .thenComparing(task -> task.getPriority().ordinal()));
-//	}
-
 	public void sortTasks() {
 		tasks.sort((task1, task2) -> {
 			int dateComparison = task1.getDueDate().compareTo(task2.getDueDate());
