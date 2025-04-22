@@ -1,4 +1,4 @@
-#Project name: DailyFlowPlanner  
+Project name: DailyFlowPlanner  
 Author:  Lev Lisus  
 
 # Project Description

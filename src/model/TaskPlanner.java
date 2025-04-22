@@ -48,33 +48,33 @@ public class TaskPlanner {
 				return task;
 			}
 		}
-		return null; // Если задача не найдена
+		return null;
 	}
 
 	public void removeTask(Task task) {
-	    tasks.remove(task);  // tasks — это список задач
+		tasks.remove(task);
 	}
-	
+
 	private void saveTasksToFile() {
-	    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tasks.dat"))) {
-	        oos.writeObject(tasks);
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tasks.dat"))) {
+			oos.writeObject(tasks);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 //	public void sortTasks() {
 //	    tasks.sort(Comparator.comparing(Task::getDueDate)
 //	              .thenComparing(task -> task.getPriority().ordinal()));
 //	}
-	
+
 	public void sortTasks() {
-	    tasks.sort((task1, task2) -> {
-	        int dateComparison = task1.getDueDate().compareTo(task2.getDueDate());
-	        if (dateComparison == 0) {
-	        	return Integer.compare(task2.getPriority().ordinal(), task1.getPriority().ordinal());
-	        }
-	        return dateComparison;
-	    });
+		tasks.sort((task1, task2) -> {
+			int dateComparison = task1.getDueDate().compareTo(task2.getDueDate());
+			if (dateComparison == 0) {
+				return Integer.compare(task2.getPriority().ordinal(), task1.getPriority().ordinal());
+			}
+			return dateComparison;
+		});
 	}
 }
