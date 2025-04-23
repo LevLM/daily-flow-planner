@@ -27,7 +27,7 @@ public class MainWindow extends JFrame {
 		setLocationRelativeTo(null);
 		taskPlanner = new TaskPlanner();
 		initComponents();
-		
+
 	}
 
 	private void initComponents() {
@@ -41,7 +41,7 @@ public class MainWindow extends JFrame {
 					boolean cellHasFocus) {
 				super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 				if (value instanceof Task) {
-					setText(((Task) value).toString()); 
+					setText(((Task) value).toString());
 				}
 				return this;
 			}
@@ -56,27 +56,27 @@ public class MainWindow extends JFrame {
 		todayButton = new JButton("Show Today Tasks");
 		completedButton = new JButton("Show Completed Tasks");
 		activeButton = new JButton("Show Active Tasks");
-		
+
 		filterLabel = new JLabel("All Tasks");
 		filterLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(filterLabel, BorderLayout.NORTH);
-		
+
 		completedButton.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        showCompletedTasks();
-		    }
+			public void actionPerformed(ActionEvent e) {
+				showCompletedTasks();
+			}
 		});
 
 		activeButton.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        showActiveTasks();
-		    }
+			public void actionPerformed(ActionEvent e) {
+				showActiveTasks();
+			}
 		});
-		
+
 		todayButton.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        showTodayTasks();
-		    }
+			public void actionPerformed(ActionEvent e) {
+				showTodayTasks();
+			}
 		});
 
 		addButton.addActionListener(new ActionListener() {
@@ -109,24 +109,30 @@ public class MainWindow extends JFrame {
 				}
 			}
 		});
-		
+
 		showAllButton.addActionListener(e -> refreshTaskList());
 
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.add(showAllButton);
-		buttonPanel.add(todayButton);
-		buttonPanel.add(activeButton);
-		
-		buttonPanel.add(addButton);
-		buttonPanel.add(editButton);
-		buttonPanel.add(deleteButton);
-		
-		buttonPanel.add(completedButton);
-		
+		JPanel operationsPanel = new JPanel();
+		operationsPanel.add(addButton);
+		operationsPanel.add(editButton);
+		operationsPanel.add(deleteButton);
 
-		setLayout(new BorderLayout());
+		// Панель фильтров (Show All, Today, Active, Completed)
+		JPanel filtersPanel = new JPanel();
+		filtersPanel.add(showAllButton);
+		filtersPanel.add(todayButton);
+		filtersPanel.add(activeButton);
+		filtersPanel.add(completedButton);
+
+		// Общая панель для кнопок
+		JPanel buttonPanel = new JPanel(new BorderLayout());
+		buttonPanel.add(filtersPanel, BorderLayout.NORTH);
+		buttonPanel.add(operationsPanel, BorderLayout.SOUTH);
+
+		// Добавляем к окну
 		add(scrollPane, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
+
 	}
 
 	public void refreshTaskList() {
@@ -142,48 +148,48 @@ public class MainWindow extends JFrame {
 	public TaskPlanner getTaskPlanner() {
 		return taskPlanner;
 	}
-	
+
 	private void showTodayTasks() {
-	    taskListModel.clear();
-	    taskPlanner.sortTasks();
-	    Date today = new Date();
-	    for (Task task : taskPlanner.getTasks()) {
-	        if (isSameDay(task.getDueDate(), today)) {
-	            taskListModel.addElement(task);
-	        }
-	    }
-	    filterLabel.setText("Today's Tasks");
+		taskListModel.clear();
+		taskPlanner.sortTasks();
+		Date today = new Date();
+		for (Task task : taskPlanner.getTasks()) {
+			if (isSameDay(task.getDueDate(), today)) {
+				taskListModel.addElement(task);
+			}
+		}
+		filterLabel.setText("Today's Tasks");
 	}
-	
+
 	private boolean isSameDay(Date date1, Date date2) {
-	    Calendar cal1 = Calendar.getInstance();
-	    Calendar cal2 = Calendar.getInstance();
-	    cal1.setTime(date1);
-	    cal2.setTime(date2);
-	    return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
-	           cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		cal1.setTime(date1);
+		cal2.setTime(date2);
+		return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+				&& cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
 	}
 
 	private void showCompletedTasks() {
-	    taskListModel.clear();
-	    for (Task task : taskPlanner.getTasks()) {
-	        if (task.getStatus() == Task.TaskStatus.COMPLETED) {
-	            taskListModel.addElement(task);
-	        }
-	    }
-	    filterLabel.setText("Completed Tasks");
+		taskListModel.clear();
+		for (Task task : taskPlanner.getTasks()) {
+			if (task.getStatus() == Task.TaskStatus.COMPLETED) {
+				taskListModel.addElement(task);
+			}
+		}
+		filterLabel.setText("Completed Tasks");
 	}
 
 	private void showActiveTasks() {
-	    taskListModel.clear();
-	    for (Task task : taskPlanner.getTasks()) {
-	        if (task.getStatus() == Task.TaskStatus.PENDING || task.getStatus() == Task.TaskStatus.IN_PROGRESS) {
-	            taskListModel.addElement(task);
-	        }
-	    }
-	    filterLabel.setText("Active Tasks");
+		taskListModel.clear();
+		for (Task task : taskPlanner.getTasks()) {
+			if (task.getStatus() == Task.TaskStatus.PENDING || task.getStatus() == Task.TaskStatus.IN_PROGRESS) {
+				taskListModel.addElement(task);
+			}
+		}
+		filterLabel.setText("Active Tasks");
 	}
-	
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			MainWindow mainWindow = new MainWindow();
