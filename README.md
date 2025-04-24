@@ -2,27 +2,28 @@
 Author:  Lev Lisus  
 
 # Project Description
-DailyFlowPlanner is an application designed for efficient task and schedule management.  
-It combines elements of a to-do list and a calendar, allowing users to manage tasks flexibly by adjusting deadlines and priorities.  
-The main goal is to help users organize their daily activities with reminders for the most relevant tasks.  
+DailyFlowPlanner is a simple application designed for efficient task and schedule management.  
+It combines elements of a to-do list and a calendar, allowing users to manage their daily activities flexibly by adjusting deadlines and priorities.  
+The main idea was to create something useful for everyday life, especially for people who like to stay organized.
 
 # Key Features  
 - Simple and intuitive graphical interface (built with Swing)
 - Easy to launch using an executable JAR file 
-- Flexible deadline management
 - Ability to add, edit, and delete tasks
 - Each task has a title, deadline, status, and priority
+- Flexible deadline management
 - Task filtering: view only today's tasks or all; filter by completed/active
 - (In development) Task types: task, reminder, meeting
 - (In development) Reminders for tasks due today
 - (In development) Improved sorting and viewing options
+- Tasks are storing in a file using object serialization, allowing to save and load complete task objects with all fields
 
 # Technologies and Tools  
 - Programming Language: Java  
 - IDE: Eclipse  
 - Build System: Maven  
 - GUI: Swing  
-- Data Storage: Text files  
+- Data Storage: Serialized file (tasks.dat)  
 - Version Control: GitHub (the code must be executable from the repository)  
 - Distribution Format: Executable JAR file
 
