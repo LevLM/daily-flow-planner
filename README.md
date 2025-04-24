@@ -7,13 +7,15 @@ It combines elements of a to-do list and a calendar, allowing users to manage ta
 The main goal is to help users organize their daily activities with reminders for the most relevant tasks.  
 
 # Key Features  
-- Plan tasks for specific dates.  
-- Display a detailed task list for today (if viewed in the first half of the day) or today + tomorrow (if viewed in the evening), with an option to view task details for future dates.    
-- Flexible deadline management.  
-- Store data in text files (without using a database).  
-- Simple and intuitive graphical interface (Swing).  
-- Notifications for tasks relevant to the current day.  
-- Ability to edit and delete tasks.  
+- Simple and intuitive graphical interface (built with Swing)
+- Easy to launch using an executable JAR file 
+- Flexible deadline management
+- Ability to add, edit, and delete tasks
+- Each task has a title, deadline, status, and priority
+- Task filtering: view only today's tasks or all; filter by completed/active
+- (In development) Task types: task, reminder, meeting
+- (In development) Reminders for tasks due today
+- (In development) Improved sorting and viewing options
 
 # Technologies and Tools  
 - Programming Language: Java  
