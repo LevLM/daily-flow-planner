@@ -39,19 +39,21 @@ The main goal is to help users organize their daily activities with reminders fo
 
 # Folder Structure
 
+```
 DailyFlowPlanner/
 ├── src/
 │   └── main/
 │       └── java/
-│           ├── gui/           # Main GUI classes
+│           ├── gui/                 # Main GUI classes
 │           │   ├── Main.java
 │           │   ├── MainWindow.java
 │           │   └── TaskForm.java
-│           ├── model/         # Task and logic classes
+│           ├── model/               # Task and logic classes
 │           │   ├── Task.java
 │           │   └── TaskPlanner.java
 │           └── module-info.java
-├── tasks.dat                  # Text file with saved tasks
-├── target/                    # Compiled classes and .jar file
-├── pom.xml                    # Maven configuration
-└── README.md                  # Project documentation
+├── tasks.dat                        # Text file with saved tasks
+├── target/                          # Compiled classes and .jar file
+├── pom.xml                          # Maven configuration
+└── README.md                        # Project documentation
+```
