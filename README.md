@@ -30,7 +30,9 @@ The main idea was to create something useful for everyday life, especially for p
 # How to Run
 1. **Clone the repository**  
 
-   	`git clone https://github.com/LevLM/daily-flow-planner.git`
+Clone the repository from Github:
+
+	`git clone https://github.com/LevLM/daily-flow-planner.git`
    	
 2. **Build the project using Maven**  
 
