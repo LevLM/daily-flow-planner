@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class TaskPlanner {
@@ -53,14 +55,7 @@ public class TaskPlanner {
 
 	public void removeTask(Task task) {
 		tasks.remove(task);
-	}
-
-	private void saveTasksToFile() {
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tasks.dat"))) {
-			oos.writeObject(tasks);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		saveTasks();
 	}
 
 	public void sortTasks() {
@@ -72,4 +67,23 @@ public class TaskPlanner {
 			return dateComparison;
 		});
 	}
+	
+	public List<Task> getTasksForDate(Date date) {
+        List<Task> tasksForDate = new ArrayList<>();
+        for (Task task : tasks) {
+            if (isSameDay(task.getDueDate(), date)) {
+                tasksForDate.add(task);
+            }
+        }
+        return tasksForDate;
+    }
+
+    private boolean isSameDay(Date date1, Date date2) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(date1);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(date2);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+                && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+    }
 }

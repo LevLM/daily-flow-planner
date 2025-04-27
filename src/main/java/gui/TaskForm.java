@@ -105,6 +105,7 @@ public class TaskForm extends JDialog {
 			task.setDueDate(dueDate);
 			task.setPriority(priority);
 			task.setStatus(status);
+			taskPlanner.saveTasks();
 		}
 
 		((MainWindow) getOwner()).refreshTaskList();

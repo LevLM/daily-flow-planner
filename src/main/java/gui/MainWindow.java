@@ -5,10 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-
+import java.util.List;
 import model.Task;
 import model.TaskPlanner;
 
@@ -27,7 +25,7 @@ public class MainWindow extends JFrame {
 		setLocationRelativeTo(null);
 		taskPlanner = new TaskPlanner();
 		initComponents();
-
+		showTodayTasksReminder();
 	}
 
 	private void initComponents() {
@@ -172,6 +170,7 @@ public class MainWindow extends JFrame {
 
 	private void showCompletedTasks() {
 		taskListModel.clear();
+		taskPlanner.sortTasks();
 		for (Task task : taskPlanner.getTasks()) {
 			if (task.getStatus() == Task.TaskStatus.COMPLETED) {
 				taskListModel.addElement(task);
@@ -182,12 +181,24 @@ public class MainWindow extends JFrame {
 
 	private void showActiveTasks() {
 		taskListModel.clear();
+		taskPlanner.sortTasks();
 		for (Task task : taskPlanner.getTasks()) {
 			if (task.getStatus() == Task.TaskStatus.PENDING || task.getStatus() == Task.TaskStatus.IN_PROGRESS) {
 				taskListModel.addElement(task);
 			}
 		}
 		filterLabel.setText("Active Tasks");
+	}
+
+	private void showTodayTasksReminder() {
+	    List<Task> todayTasks = taskPlanner.getTasksForDate(new Date());
+	    if (!todayTasks.isEmpty()) {
+	        StringBuilder message = new StringBuilder("Today's tasks:\n");
+	        for (Task task : todayTasks) {
+	            message.append("- ").append(task.getTitle()).append("\n");
+	        }
+	        JOptionPane.showMessageDialog(this, message.toString(), "Task Reminder", JOptionPane.INFORMATION_MESSAGE);
+	    }
 	}
 
 	public static void main(String[] args) {

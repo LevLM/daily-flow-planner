@@ -13,8 +13,8 @@ The main idea was to create something useful for everyday life, especially for p
 - Each task has a title, deadline, status, and priority
 - Flexible deadline management
 - Task filtering: view only today's tasks or all; filter by completed/active
+- Automatic reminder for today's tasks when the app starts
 - (In development) Task types: task, reminder, meeting
-- (In development) Reminders for tasks due today
 - (In development) Improved sorting and viewing options
 - Tasks are storing in a file using object serialization, allowing to save and load complete task objects with all fields
 
@@ -32,13 +32,20 @@ The main idea was to create something useful for everyday life, especially for p
 
    	`git clone https://github.com/LevLM/daily-flow-planner.git`
    	
-2. **Build with Maven**  
+2. **Build the project using Maven**  
 
-   	`mvn clean package`   -  inside the project directory
+Open a terminal inside the project folder and run:
+
+	`mvn clean package` 
    	
 3. **Run the application**
 
+After successful build, run the generated JAR:
+
 	`java -jar target/DailyFlowPlanner-1.0-SNAPSHOT.jar`
+
+📂 Important:
+All tasks are automatically loaded from tasks.dat if it exists.
 
 # Folder Structure
 
